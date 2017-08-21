@@ -3,6 +3,7 @@ package oauth
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 
@@ -120,7 +121,7 @@ func (oauth *Oauth) CheckAccessToken(accessToken, openID string) (b bool, err er
 //UserInfo 用户授权获取到用户信息
 type UserInfo struct {
 	util.CommonError
-
+	Subscrile  int      `json:"subscribe"` // 是否关注了公众号,从cgi user info里取出来的,不是sns里取出来的, guopengcheng
 	OpenID     string   `json:"openid"`
 	Nickname   string   `json:"nickname"`
 	Sex        int32    `json:"sex"`
@@ -140,6 +141,7 @@ func (oauth *Oauth) GetUserInfo(accessToken, openID string) (result UserInfo, er
 	if err != nil {
 		return
 	}
+	log.Println("GetUserInfo wx Ret :", string(response))
 	err = json.Unmarshal(response, &result)
 	if err != nil {
 		return
