@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/silenceper/wechat"
-	"github.com/silenceper/wechat/message"
+	"github.com/chenxinhu/wechat"
+	"github.com/chenxinhu/wechat/message"
 )
 
 func main() {
